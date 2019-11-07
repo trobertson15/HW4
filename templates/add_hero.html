@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+
+  <h3>Add A New Hero</h3>
+
+  <form method="POST" action="{{ url_for('add_hero') }}">
+
+    {{ form.csrf_token }}
+    {{ form.first_name.label }} {{ form.first_name(size=20) }}
+    {{ form.last_name.label }} {{ form.last_name(size=20) }}
+    {{ form.quirk.label }} {{ form.quirk(size=20) }}
+
+    <input type="submit" value="Add Hero">
+
+  </form>
+<br>
+<p><a href="{{ url_for('.index')}}"><span class="herolink"</span> View Heroes</a></p>
+</div>
+<p><img src="static/images/MHA_Heroes.jpg" alt="Hero Professional Photo" width= "800" height= "550"></p>
+{% endblock %}
