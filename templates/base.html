@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>{{ pageTitle }}</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+#flash { display:none; background-color:white; color:red}
+</style>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
+<script>
+    $(function() {
+   $('#flash').delay(500).fadeIn('normal', function() {
+      $(this).delay(2500).fadeOut();
+   });
+});
+</script>
+
+</head>
+
+  <body>
+      <h1> My Hero Academia Heroes </h1>
+      <hr>
+
+      {% block body %}
+
+	  {% endblock %}
+
+ </body>
+
+</html>

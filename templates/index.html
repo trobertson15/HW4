@@ -1,0 +1,59 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+<p><img src="static/images/My_Hero_Academia.jpg" alt="Hero Photo" class="pictures" width= "800" height= "450"></p>
+
+<p><a href="{{ url_for('.add_hero')}}"> <span class="herolink"</span>Add a new hero</a></p>
+
+{% with messages = get_flashed_messages() %}
+ {% if messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert" id="flash">
+   {% for message in messages %}
+   <strong>Alert!</strong> {{ message }}
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+   {% endfor %}
+   {% endif %}
+   {% endwith %}
+ </div>
+
+{% if heroes %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Quirk</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in heroes %}
+            <tr>
+                <td> {{ row.heroId }}</td>
+                <td> {{ row.first_name }}</td>
+                <td> {{ row.last_name }}</td>
+                <td> {{ row.quirk }}</td>
+
+          <td>
+          <form action="/edit_hero" method="POST">
+            <input type="submit" value="Update" class="btn btn-info" />
+          </form>
+          </td>
+          <td>
+            <form action="/delete_hero/{{ row.heroId }}" method="POST">
+              <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+          </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </p>
+{% endif %}
+{% endblock %}
