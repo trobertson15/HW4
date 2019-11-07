@@ -48,5 +48,17 @@ def add_hero():
 
     return render_template('add_hero.html', form=form, pageTitle='Add A New Hero')
 
+@app.route('/delete_hero/<int:heroId>', methods=['GET','POST'])
+def delete_hero(heroId):
+    if request.method == 'POST': #if it's a POST request, delete the friend from the database
+        obj = trobrtson_myheroacademiaapp.query.filter_by(heroId=heroId).first()
+        db.session.delete(obj)
+        db.session.commit()
+        flash('Hero was successfully deleted!')
+        return redirect("/")
+
+    else: #if it's a GET request, send them to the home page
+        return redirect("/")
+
 if __name__ == '__main__':
     app.run(debug=True)
