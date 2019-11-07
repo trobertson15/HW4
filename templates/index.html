@@ -41,11 +41,6 @@
                 <td> {{ row.quirk }}</td>
 
           <td>
-          <form action="/edit_hero" method="POST">
-            <input type="submit" value="Update" class="btn btn-info" />
-          </form>
-          </td>
-          <td>
             <form action="/delete_hero/{{ row.heroId }}" method="POST">
               <input type="submit" value="Delete" class="btn btn-danger" />
             </form>
