@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+
+  <h3>Update Hero Or Villain</h3>
+
+  <form method="POST" action="">
+
+
+    {{ form.csrf_token }}
+    {{ form.first_name.label }} {{ form.first_name(size=20) }}
+    {{ form.last_name.label }} {{ form.last_name(size=20) }}
+    {{ form.quirk.label }} {{ form.quirk(size=20) }}
+    {{ form.role.label }} {{ form.role(size=20) }}
+    {{ form.occupation.label }} {{ form.occupation(size=20) }}
+
+    <input type="submit" value="Update">
+
+  </form>
+<br>
+<p><a href="{{ url_for('.index')}}"><span class="herolink"</span> View Characters</a></p>
+</div>
+{% endblock %}
