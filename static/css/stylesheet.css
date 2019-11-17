@@ -28,3 +28,8 @@ img {
 	margin: 0;
   background: ivory;
 }
+.pictures {
+	display: table;
+	margin: 0 auto;
+  float: center;
+}
