@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+<p><a href="{{ url_for('index')}}"> <span class="herolink"</span>Home Page</a></p>
+  <h3>Character Details</h3>
+
+
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+   <div class="alert alert-warning alert-dismissible fade show" role="alert" id="flash">
+     {% for message in messages %}
+     <strong>Alert!</strong> {{ message }}
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+     {% endfor %}
+     {% endif %}
+     {% endwith %}
+   </div>
+
+{% if form %}
+  <form method="POST">
+
+    {{ form.csrf_token }}
+    {{ form.heroId.label }} {{ form.heroId }}
+    {{ form.first_name.label }} {{ form.first_name }}
+    {{ form.last_name.label }} {{ form.last_name }}
+    {{ form.quirk.label }} {{ form.quirk }}
+    {{ form.role.label }} {{ form.role }}
+    {{ form.occupation.label }} {{ form.occupation }}
+
+    <input type="submit" formaction="{{url_for('update_character', heroId=form.heroId)}}" value="Update">
+    <input type="submit" formaction="{{url_for('delete_character', heroId=form.heroId)}}" value="Delete">
+
+
+
+  </form>
+{% endif %}
+</div>
+{% endblock %}
